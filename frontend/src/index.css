@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    --bg:           #0d1117;
+    --bg-2:         #161c2d;
+    --bg-3:         #1c2438;
+    --border:       rgba(255,255,255,0.07);
+    --border-2:     rgba(255,255,255,0.13);
+    --text-1:       #e8ecf4;
+    --text-2:       #8892a4;
+    --text-3:       #4e5668;
+    --accent:       #4f6ef7;
+    --accent-dim:   #3b58d8;
+    --accent-glow:  rgba(79,110,247,0.15);
+    --success:      #22c55e;
+    --warning:      #f59e0b;
+    --danger:       #ef4444;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  ::selection { background: var(--accent); color: white; }
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 99px; }
+}
+
+@layer components {
+  .card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; }
+  .card-interactive { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; transition: border-color 0.15s, background 0.15s; cursor: pointer; }
+  .card-interactive:hover { border-color: var(--border-2); background: var(--bg-3); }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 8px 16px; border-radius: 7px; font-size: 13px; font-weight: 500;
+    background: var(--accent); color: white; transition: background 0.15s, transform 0.1s;
+    cursor: pointer; border: none; white-space: nowrap;
+  }
+  .btn-primary:hover { background: var(--accent-dim); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 8px 16px; border-radius: 7px; font-size: 13px; font-weight: 500;
+    background: var(--bg-3); color: var(--text-1); border: 1px solid var(--border-2);
+    transition: background 0.15s, border-color 0.15s; cursor: pointer; white-space: nowrap;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.08); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 6px 10px; border-radius: 6px; font-size: 13px; font-weight: 500;
+    color: var(--text-2); background: transparent; border: none;
+    transition: background 0.15s, color 0.15s; cursor: pointer;
+  }
+  .btn-ghost:hover { background: var(--bg-3); color: var(--text-1); }
+
+  .btn-danger {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    background: rgba(239,68,68,0.08); color: #f87171; border: 1px solid rgba(239,68,68,0.18);
+    transition: background 0.15s; cursor: pointer;
+  }
+  .btn-danger:hover { background: rgba(239,68,68,0.16); }
+
+  .field-label { display: block; font-size: 12px; font-weight: 500; color: var(--text-2); margin-bottom: 6px; }
+
+  .input {
+    width: 100%; padding: 8px 12px; border-radius: 7px; font-size: 13px; font-family: inherit;
+    background: var(--bg); border: 1px solid var(--border-2); color: var(--text-1);
+    outline: none; transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .input::placeholder { color: var(--text-3); }
+  .input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+  .select {
+    width: 100%; padding: 8px 32px 8px 12px; border-radius: 7px; font-size: 13px; font-family: inherit;
+    background: var(--bg); border: 1px solid var(--border-2); color: var(--text-1);
+    outline: none; cursor: pointer; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238892a4' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center;
+    transition: border-color 0.15s;
+  }
+  .select:focus { border-color: var(--accent); }
+
+  .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 5px; font-size: 11px; font-weight: 500; letter-spacing: 0.01em; }
+  .badge-blue   { background: rgba(79,110,247,0.12); color: #818cf8; }
+  .badge-green  { background: rgba(34,197,94,0.1);  color: #4ade80; }
+  .badge-yellow { background: rgba(245,158,11,0.1); color: #fbbf24; }
+  .badge-red    { background: rgba(239,68,68,0.1);  color: #f87171; }
+  .badge-gray   { background: rgba(255,255,255,0.06); color: var(--text-2); }
+
+  .divider { width: 100%; height: 1px; background: var(--border); }
+  .mono { font-family: 'DM Mono', 'JetBrains Mono', monospace; }
+}
+
+/* Leaflet dark overrides */
+.leaflet-container { background: #111827 !important; border-radius: 10px; }
+.leaflet-tile { filter: brightness(0.72) saturate(0.5) hue-rotate(195deg); }
+.leaflet-popup-content-wrapper {
+  background: var(--bg-2) !important; border: 1px solid var(--border-2) !important;
+  border-radius: 10px !important; color: var(--text-1) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important; font-family: 'DM Sans', sans-serif !important; font-size: 13px !important;
+}
+.leaflet-popup-tip { background: var(--bg-2) !important; }
+.leaflet-popup-close-button { color: var(--text-2) !important; font-size: 16px !important; }
+.leaflet-control-zoom { border: 1px solid var(--border-2) !important; border-radius: 8px !important; overflow: hidden; }
+.leaflet-control-zoom a { background: var(--bg-2) !important; color: var(--text-1) !important; border: none !important; border-bottom: 1px solid var(--border) !important; }
+.leaflet-control-zoom a:hover { background: var(--bg-3) !important; }
+.leaflet-bar { border: none !important; }
